@@ -1,56 +1,62 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using WebScrape.Core.Interfaces;
 using WebScrape.Core.Models;
 
-namespace WebScrape.Api.Controllers
+[ApiController]
+[Route("api/[controller]")]
+public class SearchJobsController : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class SearchJobsController : ControllerBase
+    private readonly ISearchJobRepository _jobRepository;
+    private readonly IScraperService _scraperService;
+
+    public SearchJobsController(
+        IScraperService scraperService,
+        ISearchJobRepository jobRepository,
+        ILogger<SearchJobsController> logger)
     {
-        private readonly ISearchJobRepository _jobRepository;
-        private readonly IScraperService _scraperService;
-        private readonly ISearchResultRepository _resultRepository;
-        private readonly ILogger<SearchJobsController> _logger;
+        _jobRepository = jobRepository;
+        _scraperService = scraperService;
+    }
 
-        public SearchJobsController(
-            ISearchJobRepository jobRepository,
-            IScraperService scraperService,
-            ISearchResultRepository resultRepository,
-            ILogger<SearchJobsController> logger)
-        {
-            _jobRepository = jobRepository;
-            _scraperService = scraperService;
-            _resultRepository = resultRepository;
-            _logger = logger;
-        }
+    // GET api/SearchJobs
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<SearchJob>>> GetAllJobs()
+        => Ok(await _jobRepository.GetAllAsync());
 
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<SearchJob>>> GetAllJobs()
-        {
-            var jobs = await _jobRepository.GetAllAsync();
-            return Ok(jobs);
-        }
+    // GET api/SearchJobs/{id}
+    [HttpGet("{id}")]
+    public async Task<ActionResult<SearchJob>> GetJobById(int id)
+    {
+        var job = await _jobRepository.GetByIdAsync(id);
+        return job is not null ? Ok(job) : NotFound();
+    }
 
-        [HttpGet("{id}")]
-        public async Task<ActionResult<SearchJob>> GetJobById(int id)
-        {
-            var job = await _jobRepository.GetByIdAsync(id);
-            if (job == null)
-            {
-                return NotFound();
-            }
-            return Ok(job);
-        }
+    // GET api/SearchJobs/search?keyword=foo
+    [HttpGet("search")]  // ← add a template
+    public async Task<ActionResult<IEnumerable<SearchResult>>> GetByKeyword(
+        [FromQuery] string keyword)
+    {
+        if (string.IsNullOrWhiteSpace(keyword))
+            return BadRequest("Keyword is required");
 
-        [HttpPost]
-        public async Task<ActionResult<IEnumerable<SearchResult>>> CreateJob([FromBody] CreateJobRequest request)
-        {
-            var results = await _scraperService.ScrapeGoogleAsync(request.Keyword, request.maxResults);
+        var results = await _jobRepository.GetByKeywordAsync(keyword);
+        return Ok(results);
+    }
 
-            // Return the results wrapped in an ActionResult with Ok()
-            return Ok(results);
-        }
+    // POST api/CreateJobs
+    [HttpPost]
+    public async Task<ActionResult<IEnumerable<SearchResult>>> CreateJob(
+        [FromBody] CreateJobRequest request)
+    {
+        var results = await _scraperService.ScrapeGoogleAsync(request.Keyword, request.maxResults);
+        return Ok(results);
+    }
+
+    // DELETE api/SearchJobs/{id}
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteJobById(int id)
+    {
+        await _jobRepository.DeleteAsync(id);
+        return NoContent();
     }
 }
