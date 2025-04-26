@@ -7,10 +7,10 @@ using WebScrape.Core.Models;
 public class SearchJobsController : ControllerBase
 {
     private readonly ISearchJobRepository _jobRepository;
-    private readonly IScraperService _scraperService;
+    private readonly IGoogleScraperService _scraperService;
 
     public SearchJobsController(
-        IScraperService scraperService,
+        IGoogleScraperService scraperService,
         ISearchJobRepository jobRepository,
         ILogger<SearchJobsController> logger)
     {
