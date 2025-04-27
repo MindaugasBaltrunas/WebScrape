@@ -1,4 +1,7 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
+using Swashbuckle.AspNetCore.Annotations;
+using WebScrape.Api.MapperProfile;
 using WebScrape.Core.Interfaces;
 using WebScrape.Core.Repositories;
 using WebScrape.Infrastructure.Data.Context;
@@ -6,27 +9,45 @@ using WebScrape.Services.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "WebScrape API", Version = "v1" });
-});
+// 1) Controllers + JSON options (case‐insensitive + string enums)
+builder.Services
+    .AddControllers()
+    .AddJsonOptions(opts =>
+    {
+        var json = opts.JsonSerializerOptions;
+        json.PropertyNameCaseInsensitive = true;
+        json.Converters.Add(new JsonStringEnumConverter());
+    });
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(
+// 2) Swagger & enable [SwaggerRequestBody]
+builder.Services
+    .AddEndpointsApiExplorer()
+    .AddSwaggerGen(c =>
+    {
+        c.SwaggerDoc("v1", new() { Title = "WebScrape API", Version = "v1" });
+    });
+
+// 3) EF/Core
+builder.Services.AddDbContext<AppDbContext>(opts =>
+    opts.UseNpgsql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
         b => b.MigrationsAssembly("WebScrape.Infrastructure")
     ));
 
-builder.Services.AddScoped<IGoogleScraperService, GoogleScraperService>();
-builder.Services.AddScoped<ISearchJobRepository, GoogleScraperRepository>();
+// 4) Core services
 builder.Services.AddScoped<ICookieConsentHandler, CookieConsentHandler>();
 builder.Services.AddScoped<ISearchResultExtractor, SearchResultExtractor>();
+builder.Services.AddScoped<IScraperFactory>(sp =>
+    new ScraperFactory(
+        sp.GetRequiredService<ICookieConsentHandler>(),
+        headless: true
+    )
+);
+builder.Services.AddScoped<IGoogleScraperService, GoogleScraperService>();
+builder.Services.AddScoped<ISearchJobRepository, GoogleScraperRepository>();
 
-builder.Services.AddScoped<IScraperFactory, ScraperFactory>();
-builder.Services.AddScoped<IGoogleScraperService, ScraperService>();
-
+// 5) Mapper
+builder.Services.AddSingleton<ISelectorMapper, SelectorMapper>();
 
 var app = builder.Build();
 
@@ -45,10 +66,9 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-using (var scope = app.Services.CreateScope())
-{
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    db.Database.Migrate();
-}
+// apply migrations at startup
+using var scope = app.Services.CreateScope();
+var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+db.Database.Migrate();
 
 app.Run();
