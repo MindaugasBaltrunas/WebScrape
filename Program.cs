@@ -40,11 +40,13 @@ builder.Services.AddScoped<ISearchResultExtractor, SearchResultExtractor>();
 builder.Services.AddScoped<IScraperFactory>(sp =>
     new ScraperFactory(
         sp.GetRequiredService<ICookieConsentHandler>(),
-        headless: true
+        sp.GetRequiredService<IScraperService>(),
+        true 
     )
 );
 builder.Services.AddScoped<IGoogleScraperService, GoogleScraperService>();
 builder.Services.AddScoped<ISearchJobRepository, GoogleScraperRepository>();
+builder.Services.AddScoped<IScraperService, ScraperService>();
 
 // 5) Mapper
 builder.Services.AddSingleton<ISelectorMapper, SelectorMapper>();
