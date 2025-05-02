@@ -15,18 +15,6 @@ namespace WebScrape.Api.MapperProfile
             return requests.Select(CreateByFromRequest).ToList();
         }
 
-        public Dictionary<string, SelectorType> MapToDomainSelectors(
-            IDictionary<string, SelectorTypeRequest> requests)
-        {
-            if (requests == null)
-                return new Dictionary<string, SelectorType>();
-
-            return requests.ToDictionary(
-                kvp => kvp.Key,
-                kvp => new SelectorType(kvp.Value.Value, kvp.Value.Type)
-            );
-        }
-
         private By CreateByFromRequest(SelectorTypeRequest dto)
         {
             if (dto == null)

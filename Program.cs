@@ -39,7 +39,6 @@ builder.Services.AddScoped<ICookieConsentHandler, CookieConsentHandler>();
 builder.Services.AddScoped<ISearchResultExtractor, SearchResultExtractor>();
 builder.Services.AddScoped<IScraperFactory>(sp =>
     new ScraperFactory(
-        sp.GetRequiredService<ICookieConsentHandler>(),
         sp.GetRequiredService<IScraperService>(),
         true 
     )

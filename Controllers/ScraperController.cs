@@ -6,6 +6,7 @@ namespace WebScrape.Api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+
     public class ScraperController : ControllerBase
     {
         private readonly IScraperFactory _scraperFactory;
@@ -32,51 +33,6 @@ namespace WebScrape.Api.Controllers
                                request.ClassSelectors,
                                cookieBys
                            );
-
-            return Ok(results);
-        }
-
-        [HttpPost("scrapePaginated")]
-        public ActionResult<Dictionary<string, List<string>>> ScrapePaginated([FromBody] PaginatedScrapeRequest request)
-        {
-            if (request == null || string.IsNullOrWhiteSpace(request.Url))
-                return BadRequest("URL is required");
-
-            if (request.ClassSelectors == null || request.ClassSelectors.Count == 0)
-                return BadRequest("Class selectors are required");
-
-            if (string.IsNullOrWhiteSpace(request.PaginationSelector))
-                return BadRequest("Pagination selector is required");
-
-            var cookieBys = _selectorMapper.MapToBy(request.CookieSelectors);
-            var results = _scraperFactory.ScrapeWebsiteWithPagination(
-                                request.Url,
-                                request.ClassSelectors,
-                                request.PaginationSelector,
-                                request.MaxPages ?? 5,
-                                cookieBys
-                            );
-
-            return Ok(results);
-        }
-
-        [HttpPost("scrapeWithSelectors")]
-        public ActionResult<Dictionary<string, List<string>>> ScrapeWithSelectors([FromBody] SelectorScrapeRequest request)
-        {
-            if (request == null || string.IsNullOrWhiteSpace(request.Url))
-                return BadRequest("URL is required");
-
-            if (request.Selectors == null || request.Selectors.Count == 0)
-                return BadRequest("Selectors are required");
-
-            var domainSelectors = _selectorMapper.MapToDomainSelectors(request.Selectors);
-            var cookieBys = _selectorMapper.MapToBy(request.CookieSelectors);
-
-            var results = _scraperFactory.ScrapeBySelectors(
-                              request.Url,
-                              domainSelectors,
-                              cookieBys
-                          );
 
             return Ok(results);
         }

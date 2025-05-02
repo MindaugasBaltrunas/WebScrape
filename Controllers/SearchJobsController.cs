@@ -18,12 +18,10 @@ public class SearchJobsController : ControllerBase
         _scraperService = scraperService;
     }
 
-    // GET api/SearchJobs
     [HttpGet]
     public async Task<ActionResult<IEnumerable<SearchJob>>> GetAllJobs()
         => Ok(await _jobRepository.GetAllAsync());
 
-    // GET api/SearchJobs/{id}
     [HttpGet("{id}")]
     public async Task<ActionResult<SearchJob>> GetJobById(int id)
     {
@@ -31,10 +29,9 @@ public class SearchJobsController : ControllerBase
         return job is not null ? Ok(job) : NotFound();
     }
 
-    // GET api/SearchJobs/search?keyword=foo
-    [HttpGet("search")]  // ← add a template
+    [HttpGet("search")]
     public async Task<ActionResult<IEnumerable<SearchResult>>> GetByKeyword(
-        [FromQuery] string keyword)
+       [FromQuery] string keyword)
     {
         if (string.IsNullOrWhiteSpace(keyword))
             return BadRequest("Keyword is required");
@@ -43,16 +40,14 @@ public class SearchJobsController : ControllerBase
         return Ok(results);
     }
 
-    // POST api/CreateJobs
     [HttpPost]
     public async Task<ActionResult<IEnumerable<SearchResult>>> CreateJob(
         [FromBody] CreateJobRequest request)
     {
-        var results = await _scraperService.ScrapeGoogleAsync(request.Keyword, request.maxResults);
+        var results = await _scraperService.ScrapeGoogleAsync(request.Keyword, request.MaxResults);
         return Ok(results);
     }
 
-    // DELETE api/SearchJobs/{id}
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteJobById(int id)
     {
