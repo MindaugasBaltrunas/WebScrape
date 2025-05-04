@@ -1,0 +1,15 @@
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\WebScrape.Core.deps.json
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\WebScrape.Core.dll
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\WebScrape.Core.pdb
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.AssemblyInfoInputs.cache
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.AssemblyInfo.cs
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.csproj.CoreCompileInputs.cache
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.dll
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\refint\WebScrape.Core.dll
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.pdb
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\ref\WebScrape.Core.dll
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\selenium-manager\linux\selenium-manager
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\selenium-manager\macos\selenium-manager
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\selenium-manager\windows\selenium-manager.exe
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.csproj.AssemblyReference.cache

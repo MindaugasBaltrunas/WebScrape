@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "DUd5rbIpMvU=",
+  "success": true,
+  "projectFilePath": "E:\\2_pusmetis\\Objektinis programavimas\\ND_4\\WebScraping\\src\\WebScraping.Core\\WebScrape.Core.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\minde\\.nuget\\packages\\selenium.webdriver\\4.31.0\\selenium.webdriver.4.31.0.nupkg.sha512"
+  ],
+  "logs": []
+}
