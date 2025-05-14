@@ -16,3 +16,4 @@ E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Services\o
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Services\obj\Debug\net9.0\refint\WebScrape.Services.dll
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Services\obj\Debug\net9.0\WebScrape.Services.pdb
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Services\obj\Debug\net9.0\ref\WebScrape.Services.dll
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Services\obj\Debug\net9.0\WebScrape.Services.sourcelink.json

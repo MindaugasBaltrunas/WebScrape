@@ -8,6 +8,6 @@ namespace WebScrape.Core.Interfaces
         Task<List<SearchJob>> GetAllAsync();
         Task CreateAsync(SearchJob job);
         Task DeleteAsync(int id);
-        Task<List<SearchResult>> GetByKeywordAsync(string keyword);
+        Task<SearchJob> GetByKeywordAsync(string keyword);
     }
 }

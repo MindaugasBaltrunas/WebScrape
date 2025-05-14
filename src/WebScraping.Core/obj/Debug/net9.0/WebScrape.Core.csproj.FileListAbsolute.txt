@@ -13,3 +13,4 @@ E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\selenium-manager\macos\selenium-manager
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\bin\Debug\net9.0\selenium-manager\windows\selenium-manager.exe
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.csproj.AssemblyReference.cache
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScraping.Core\obj\Debug\net9.0\WebScrape.Core.sourcelink.json

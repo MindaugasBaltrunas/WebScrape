@@ -19,7 +19,7 @@ namespace WebScrape.Infrastructure.Data.Context
         {
             modelBuilder.Entity<SearchJob>()
                 .HasMany(j => j.Results)
-                .WithOne()
+                .WithOne(r => r.SearchJob)
                 .HasForeignKey("SearchJobId");
 
             modelBuilder.Entity<SearchResult>()

@@ -43,12 +43,11 @@ namespace WebScrape.Core.Repositories
             }
         }
 
-        public async Task<List<SearchResult>> GetByKeywordAsync(string keyword)
+        public async Task<SearchJob> GetByKeywordAsync(string keyword)
         {
-            return await _context.SearchResults
-                .Where(r => r.Keyword == keyword)
-                .OrderByDescending(r => r.ScrapedAt)
-                .ToListAsync();
+            return await _context.SearchJobs
+                .Include(j => j.Results)
+                .FirstOrDefaultAsync(j => j.Keyword == keyword);
         }
     }
 }

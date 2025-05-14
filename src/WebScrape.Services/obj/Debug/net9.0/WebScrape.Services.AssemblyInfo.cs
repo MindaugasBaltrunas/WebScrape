@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WebScrape.Services")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e4e5d3a82942a7f1c8f42fdb1a080af94a58896d")]
 [assembly: System.Reflection.AssemblyProductAttribute("WebScrape.Services")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WebScrape.Services")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -30,7 +30,7 @@ public class SearchJobsController : ControllerBase
     }
 
     [HttpGet("search")]
-    public async Task<ActionResult<IEnumerable<SearchResult>>> GetByKeyword(
+    public async Task<ActionResult<SearchJob>> GetByKeyword(
        [FromQuery] string keyword)
     {
         if (string.IsNullOrWhiteSpace(keyword))

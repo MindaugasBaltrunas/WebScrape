@@ -9,5 +9,7 @@ namespace WebScrape.Core.Models
         public string Url { get; set; } = string.Empty;
         public string Snippet { get; set; } = string.Empty;
         public DateTime ScrapedAt { get; set; }
+        public int SearchJobId { get; set; }
+        public SearchJob SearchJob { get; set; } = null;
     }
 }

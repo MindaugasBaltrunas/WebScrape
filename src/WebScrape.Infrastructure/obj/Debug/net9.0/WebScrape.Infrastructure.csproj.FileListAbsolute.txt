@@ -18,3 +18,4 @@ E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Infrastruc
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Infrastructure\bin\Debug\net9.0\selenium-manager\linux\selenium-manager
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Infrastructure\bin\Debug\net9.0\selenium-manager\macos\selenium-manager
 E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Infrastructure\bin\Debug\net9.0\selenium-manager\windows\selenium-manager.exe
+E:\2_pusmetis\Objektinis programavimas\ND_4\WebScraping\src\WebScrape.Infrastructure\obj\Debug\net9.0\WebScrape.Infrastructure.sourcelink.json
